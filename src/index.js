@@ -6,16 +6,10 @@ import {createStore} from 'redux'
 
 const store = createStore(reducers);
 
-const todos = [
-  {"name": "牛乳", "checked": false},
-  {"name": "砂糖", "checked": true},
-  {"name": "洗剤", "checked": false}
-];
-
 const render = () => ReactDOM.render(
   <App
-    onChangeCheckbox={() => store.dispatch({type: `TOGGLE_TODO`})}
-    todos={todos}
+    onChangeCheckbox={(id) => store.dispatch({type: `TOGGLE_TODO`, id})}
+    todos={store.getState()[`todos`]}
   />,
   document.getElementById('root')
 );

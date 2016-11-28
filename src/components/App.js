@@ -21,8 +21,8 @@ export default class App extends Component {
           let className = cn({
             checked: t.checked
           });
-          return <li className={className} key={index}>
-            <input type="checkbox" onChange={onChangeCheckbox} checked={t.checked} />
+          return <li className={className} key={t.id}>
+            <input type="checkbox" onChange={() => onChangeCheckbox(t.id)} checked={t.checked} />
             <span>{t.name}</span>
           </li>;
         })}
