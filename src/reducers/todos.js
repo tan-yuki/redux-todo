@@ -10,6 +10,7 @@ const initialTodos = [
  * state:
  * [
  *   {
+ *     id: number,
  *     name: string,
  *     checked: boolean
  *    }
@@ -27,6 +28,16 @@ export default (state = initialTodos, action) => {
 
         return t;
       });
+    case 'ADD_TODO':
+      let newTodo = {
+        id: state.length + 1,
+        name: action.title,
+        checked: false
+      };
+
+      return [
+        ...state, newTodo
+      ];
     default:
       return state;
   }

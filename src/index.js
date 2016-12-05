@@ -9,6 +9,7 @@ const store = createStore(reducers);
 const render = () => ReactDOM.render(
   <App
     onChangeCheckbox={(id) => store.dispatch({type: `TOGGLE_TODO`, id})}
+    onClickAddButton={(title) => store.dispatch({type: `ADD_TODO`, title})}
     todos={store.getState()[`todos`]}
   />,
   document.getElementById('root')
