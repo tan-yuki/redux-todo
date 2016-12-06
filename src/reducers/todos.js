@@ -1,10 +1,13 @@
 import assgin from 'object-assign';
 
+
 const initialTodos = [
   {"id": 1, "name": "牛乳", "checked": false},
   {"id": 2, "name": "砂糖", "checked": true},
   {"id": 3, "name": "洗剤", "checked": false}
 ];
+
+let maxId = initialTodos.length;
 
 /*
  * state:
@@ -30,14 +33,18 @@ export default (state = initialTodos, action) => {
       });
     case 'ADD_TODO':
       let newTodo = {
-        id: state.length + 1,
+        id: maxId + 1,
         name: action.title,
         checked: false
       };
 
+      maxId++;
+
       return [
         ...state, newTodo
       ];
+    case 'DELETE_TODO':
+      return state.filter((item) => item.id !== action.id);
     default:
       return state;
   }

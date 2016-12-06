@@ -7,13 +7,20 @@ export default class TodoItem extends Component {
     id: PropTypes.number.isRequired,
     name: PropTypes.string.isRequired,
     checked: PropTypes.bool.isRequired,
-    onChangeCheckbox: PropTypes.func.isRequired
+    onChangeCheckbox: PropTypes.func.isRequired,
+    onDeleteTodoItem: PropTypes.func.isRequired
   }
 
   onChangeCheckbox(id) {
     const {onChangeCheckbox} = this.props;
 
     onChangeCheckbox(id);
+  }
+
+  onClickDeleteLink(id) {
+    const {onDeleteTodoItem} = this.props;
+
+    onDeleteTodoItem(id);
   }
 
   render() {
@@ -26,6 +33,7 @@ export default class TodoItem extends Component {
     return (<li className={className}>
       <input type="checkbox" onChange={() => this.onChangeCheckbox(id)} checked={checked} />
       <span>{name}</span>
+      <a className="deleteTodoItem" href="#" onClick={() => this.onClickDeleteLink(id)}>Delete</a>
     </li>);
   }
 }
