@@ -10,6 +10,7 @@ const render = () => ReactDOM.render(
   <App
     onChangeCheckbox={(id) => store.dispatch({type: `TOGGLE_TODO`, id})}
     onDeleteTodoItem={(id) => store.dispatch({type: `DELETE_TODO`, id})}
+    onUpdateTodoItem={(id, name) => store.dispatch({type: `UPDATE_TODO`, id, name})}
     onClickAddButton={(title) => store.dispatch({type: `ADD_TODO`, title})}
     todos={store.getState()[`todos`]}
   />,

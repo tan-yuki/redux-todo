@@ -43,6 +43,16 @@ export default (state = initialTodos, action) => {
       return [
         ...state, newTodo
       ];
+    case 'UPDATE_TODO':
+      return state.map((t) => {
+        if (t.id === action.id) {
+          return assgin({}, t, {
+            name: action.name
+          });
+        }
+
+        return t;
+      });
     case 'DELETE_TODO':
       return state.filter((item) => item.id !== action.id);
     default:

@@ -7,6 +7,7 @@ export default class App extends Component {
   static propTypes = {
     onChangeCheckbox: PropTypes.func.isRequired,
     onDeleteTodoItem: PropTypes.func.isRequired,
+    onUpdateTodoItem: PropTypes.func.isRequired,
     onClickAddButton: PropTypes.func.isRequired,
     todos: PropTypes.arrayOf(PropTypes.object).isRequired
   }
@@ -16,6 +17,7 @@ export default class App extends Component {
       onChangeCheckbox,
       onDeleteTodoItem,
       onClickAddButton,
+      onUpdateTodoItem,
       todos} = this.props;
 
     return (<div>
@@ -23,6 +25,7 @@ export default class App extends Component {
       <TodoList
         onChangeCheckbox={onChangeCheckbox}
         onDeleteTodoItem={onDeleteTodoItem}
+        onUpdateTodoItem={onUpdateTodoItem}
         todos={todos} />
     </div>);
   }
