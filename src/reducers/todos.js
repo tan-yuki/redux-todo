@@ -1,6 +1,3 @@
-import assgin from 'object-assign';
-
-
 const initialTodos = [
   {"id": 1, "name": "牛乳", "checked": false},
   {"id": 2, "name": "砂糖", "checked": true},
@@ -24,7 +21,7 @@ export default (state = initialTodos, action) => {
     case 'TOGGLE_TODO':
       return state.map((t) => {
         if (t.id === action.id) {
-          return assgin({}, t, {
+          return Object.assign({}, t, {
             checked: !t.checked
           });
         }
@@ -46,7 +43,7 @@ export default (state = initialTodos, action) => {
     case 'UPDATE_TODO':
       return state.map((t) => {
         if (t.id === action.id) {
-          return assgin({}, t, {
+          return Object.assign({}, t, {
             name: action.name
           });
         }
