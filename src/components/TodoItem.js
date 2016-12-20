@@ -1,16 +1,15 @@
 import React, {Component, PropTypes} from 'react';
 import cn from 'classnames';
 import TodoInputText from './TodoInputText';
+import {event} from '../lib/event-emitter';
+import {actionName} from '../common/constants';
 
 export default class TodoItem extends Component {
 
   static propTypes = {
     id: PropTypes.number.isRequired,
     name: PropTypes.string.isRequired,
-    checked: PropTypes.bool.isRequired,
-    onChangeCheckbox: PropTypes.func.isRequired,
-    onDeleteTodoItem: PropTypes.func.isRequired,
-    onUpdateTodoItem: PropTypes.func.isRequired
+    checked: PropTypes.bool.isRequired
   }
 
   state = {
@@ -18,15 +17,11 @@ export default class TodoItem extends Component {
   }
 
   onChangeCheckbox(id) {
-    const {onChangeCheckbox} = this.props;
-
-    onChangeCheckbox(id);
+    event.emit(actionName.TOGGLE_TODO, id);
   }
 
   onClickDeleteLink(id) {
-    const {onDeleteTodoItem} = this.props;
-
-    onDeleteTodoItem(id);
+    event.emit(actionName.DELETE_TODO, id);
   }
 
   onDoubleClick() {
@@ -46,7 +41,7 @@ export default class TodoItem extends Component {
   }
 
   render() {
-    const {id, name, checked, onUpdateTodoItem} = this.props;
+    const {id, name, checked} = this.props;
 
     let className = cn({
       checked: checked
@@ -57,7 +52,6 @@ export default class TodoItem extends Component {
     elem = <TodoInputText
       id={id}
       text={name}
-      onUpdateTodoItem={onUpdateTodoItem}
       onUpdateFinished={() => this.finishToEditing()}
     />
     } else {

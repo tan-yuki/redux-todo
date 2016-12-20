@@ -34,7 +34,7 @@ export default (state = initialTodos, action) => {
     case 'ADD_TODO':
       let newTodo = {
         id: maxId + 1,
-        name: action.title,
+        name: action.name,
         checked: false
       };
 

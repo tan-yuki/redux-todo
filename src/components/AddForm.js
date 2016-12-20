@@ -1,10 +1,8 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import {event} from '../lib/event-emitter';
+import {actionName} from '../common/constants';
 
 export default class AddForm extends Component {
-
-  static propTypes = {
-    onClickAddButton: PropTypes.func.isRequired
-  }
 
   constructor(props) {
     super(props);
@@ -21,10 +19,8 @@ export default class AddForm extends Component {
   }
 
   onClickAddButton(e) {
-    const {onClickAddButton} = this.props;
-
     e.preventDefault();
-    onClickAddButton(this.state.inputValue);
+    event.emit(actionName.ADD_TODO, this.state.inputValue);
   }
 
   render() {

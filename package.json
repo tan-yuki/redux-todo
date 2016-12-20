@@ -51,6 +51,7 @@
   "dependencies": {
     "babel-core": "^6.18.2",
     "classnames": "^2.2.5",
+    "eventemitter3": "^2.0.2",
     "react": "^15.4.0",
     "react-dom": "^15.4.0",
     "redux": "^3.6.0"

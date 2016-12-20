@@ -1,4 +1,6 @@
 import React, {Component, PropTypes} from 'react';
+import {event} from '../lib/event-emitter';
+import {actionName} from '../common/constants';
 
 export default class TodoInputText extends Component {
 
@@ -6,8 +8,7 @@ export default class TodoInputText extends Component {
     id: PropTypes.number.isRequired,
     editing: PropTypes.bool,
     text: PropTypes.string.isRequired,
-    onUpdateTodoItem: PropTypes.func.isRequired,
-    onUpdateFinished: PropTypes.func.isRequired
+    onUpdateFinished: PropTypes.func.isRequired,
   }
 
   state = {
@@ -21,14 +22,10 @@ export default class TodoInputText extends Component {
   }
 
   onKeyDown(e) {
-    const {
-      id,
-      onUpdateTodoItem,
-      onUpdateFinished
-    } = this.props;
+    const {id, onUpdateFinished} = this.props;
 
     if (e.keyCode === 13) {
-      onUpdateTodoItem(id, this.state.text);
+      event.emit(actionName.UPDATE_TODO, id, this.state.text);
       onUpdateFinished();
     }
   }
