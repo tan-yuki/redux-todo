@@ -1,5 +1,5 @@
 module.exports = {
-  entry: ['./src/app.ts'],
+  entry: ['./src/app.tsx'],
   output: {
     path: __dirname,
     filename: './dist/build.js',
@@ -11,9 +11,9 @@ module.exports = {
   module: {
     loaders: [
       {
-        test: /\.ts$/,
-        loader: 'babel-loader',
-        exclude: /node_modules/
+        exclude: /node_modules/,
+        test: /\.tsx$/,
+        loaders: ['ts-loader']
       }
     ]
   }

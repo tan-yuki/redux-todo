@@ -1,9 +1,14 @@
 {
   "compilerOptions": {
     "module": "commonjs",
-    "sourceMap": true
+    "target": "es5",
+    "sourceMap": true,
+    "jsx": "react"
   },
-  "filesGlob": [
-    "./**/*.ts"
+  "include": [
+    "src/**/*.tsx"
+  ],
+  "exclude": [
+    "node_modules"
   ]
 }
