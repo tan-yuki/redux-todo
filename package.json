@@ -11,6 +11,8 @@
     "redux": "^3.6.0"
   },
   "devDependencies": {
+    "@types/classnames": "^0.0.32",
+    "@types/eventemitter3": "^1.2.0",
     "@types/react": "^15.0.0",
     "@types/react-dom": "^0.14.20",
     "gh-pages": "^0.12.0",

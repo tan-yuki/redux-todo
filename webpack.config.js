@@ -1,18 +1,18 @@
 module.exports = {
-  entry: ['./src/app.tsx'],
+  entry: ['./src/index.tsx'],
   output: {
     path: __dirname,
     filename: './dist/build.js',
   },
   resolve: {
-    extensions: ['', '.js', '.ts'],
+    extensions: ['', '.ts', '.tsx', '.js'],
   },
   devtool: 'source-map',
   module: {
     loaders: [
       {
         exclude: /node_modules/,
-        test: /\.tsx$/,
+        test: /\.tsx?$/,
         loaders: ['ts-loader']
       }
     ]
