@@ -2,7 +2,7 @@ module.exports = {
   entry: ['./src/index.tsx'],
   output: {
     path: __dirname,
-    filename: './dist/build.js',
+    filename: './public/dist/build.js',
   },
   resolve: {
     extensions: ['', '.ts', '.tsx', '.js'],
