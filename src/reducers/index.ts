@@ -1,4 +1,4 @@
-import todos from './todos';
+import todos from './todos/index';
 import {combineReducers} from 'redux'
 import {IState} from "../common/models/state/state";
 

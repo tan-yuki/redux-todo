@@ -1,12 +1,12 @@
 import {Action} from "redux/index";
 import * as _ from "lodash";
 
-import {ITodoState, initialTodoState} from "../common/models/state/todo-state";
-import {ITodo} from "../common/models/todo";
-import {IAddTodoAction, addTodo} from "./actions/add-todo-action";
-import {IDeleteTodoAction, deleteTodo} from "./actions/delete-todo-action";
-import {IToggleTodoAction, toggleTodo} from "./actions/toggle-todo-action";
-import {IUpdateTodoAction, updateTodo} from "./actions/update-todo-action";
+import {ITodoState, initialTodoState} from "../../common/models/state/todo-state";
+import {ITodo} from "../../common/models/todo";
+import {IAddTodoAction, addTodo} from "actions/add-todo-action";
+import {IDeleteTodoAction, deleteTodo} from "actions/delete-todo-action";
+import {IToggleTodoAction, toggleTodo} from "actions/toggle-todo-action";
+import {IUpdateTodoAction, updateTodo} from "actions/update-todo-action";
 
 let maxId = initialTodoState.data.length;
 
