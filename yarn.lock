@@ -10,6 +10,10 @@
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/@types/eventemitter3/-/eventemitter3-1.2.0.tgz#4ebc1b9c6e92417c8e5c49204bb48189f7463dca"
 
+"@types/lodash@^4.14.50":
+  version "4.14.50"
+  resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.50.tgz#2227da4d65fafe249bccd59c7b9396e27674c8f7"
+
 "@types/react-dom@^0.14.20":
   version "0.14.20"
   resolved "https://registry.yarnpkg.com/@types/react-dom/-/react-dom-0.14.20.tgz#6e30d66148e78b29ef593fa91ba30d0175190604"
@@ -1161,7 +1165,7 @@ lodash-es@^4.2.1:
   version "4.17.4"
   resolved "https://registry.yarnpkg.com/lodash-es/-/lodash-es-4.17.4.tgz#dcc1d7552e150a0640073ba9cb31d70f032950e7"
 
-lodash@^4.14.0, lodash@^4.2.1:
+lodash@^4.14.0, lodash@^4.17.4, lodash@^4.2.1:
   version "4.17.4"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.4.tgz#78203a4d1c328ae1d86dca6460e369b57f4055ae"
 

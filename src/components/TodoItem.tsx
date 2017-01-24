@@ -1,43 +1,50 @@
 import * as React from 'react';
 import * as cn from 'classnames';
-import TodoInputText from './TodoInputText';
+import {TodoInputText} from './TodoInputText';
 import {event} from '../lib/event-emitter';
 import {actionName} from '../common/constants';
 
-export default class TodoItem extends React.Component<any, any> {
+interface ITodoItemProps {
+  id:      number,
+  name:    string,
+  checked: boolean
+}
+interface ITodoItemState {
+  editing: boolean
+}
 
-  static propTypes = {
-    id:      React.PropTypes.number.isRequired,
-    name:    React.PropTypes.string.isRequired,
-    checked: React.PropTypes.bool.isRequired
+export class TodoItem extends React.Component<ITodoItemProps, ITodoItemState> {
+
+  constructor(props: ITodoItemProps) {
+    super(props);
+
+    this.state = {
+      editing: false
+    };
   }
 
-  state = {
-    editing: false
-  }
-
-  onChangeCheckbox(id) {
-    event.emit(actionName.TOGGLE_TODO, id);
-  }
-
-  onClickDeleteLink(id) {
-    event.emit(actionName.DELETE_TODO, id);
-  }
-
-  onDoubleClick() {
+  onDoubleClick(): void {
     this.startToEditing();
   }
 
-  startToEditing() {
+  startToEditing(): void {
     this.setState({
       editing: true
     });
   }
 
-  finishToEditing() {
+  finishToEditing(): void {
     this.setState({
       editing: false
     });
+  }
+  
+  onChangeCheckbox(id: number): void {
+    event.emit(actionName.TOGGLE_TODO, id);
+  }
+
+  onClickDeleteLink(id: number): void {
+    event.emit(actionName.DELETE_TODO, id);
   }
 
   render() {
@@ -49,11 +56,11 @@ export default class TodoItem extends React.Component<any, any> {
 
     let elem;
     if (this.state.editing) {
-    elem = <TodoInputText
-      id={id}
-      text={name}
-      onUpdateFinished={() => this.finishToEditing()}
-    />
+      elem = <TodoInputText
+        id={id}
+        text={name}
+        onUpdateFinished={() => this.finishToEditing()}
+      />
     } else {
       elem = <span onDoubleClick={() => this.onDoubleClick()}>{name}</span>;
     }

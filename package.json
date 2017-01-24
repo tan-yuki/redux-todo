@@ -4,8 +4,10 @@
   "private": true,
   "homepage": "http://tan-yuki.github.io/redux-todo",
   "dependencies": {
+    "@types/lodash": "^4.14.50",
     "classnames": "^2.2.5",
     "eventemitter3": "^2.0.2",
+    "lodash": "^4.17.4",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
     "redux": "^3.6.0"

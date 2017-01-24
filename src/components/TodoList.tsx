@@ -1,14 +1,17 @@
 import * as React from 'react';
-import TodoItem from './TodoItem';
+import {TodoItem} from './TodoItem';
+import {ITodos} from "../common/models/todos";
 
-export default class TodoList extends React.Component<any, any> {
+interface ITodoListProps {
+  todos: ITodos
+}
+interface ITodoListState {}
 
-  constructor(props: any) {
+export class TodoList
+  extends React.Component<ITodoListProps, ITodoListState> {
+  
+  constructor(props: ITodoListProps) {
     super(props);
-  }
-
-  static propTypes = {
-    todos: React.PropTypes.arrayOf(React.PropTypes.object).isRequired
   }
 
   render() {

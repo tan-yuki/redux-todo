@@ -1,14 +1,17 @@
 import * as React from 'react';
-import AddForm from './AddForm';
-import TodoList from './TodoList';
+import {AddForm} from './AddForm';
+import {TodoList} from './TodoList';
+import {ITodos} from "../common/models/todos";
 
-export default class App extends React.Component<any, any> {
+interface IAppProps {
+  todos: ITodos
+}
+interface IAppState {
+}
 
-  static propTypes = {
-    todos: React.PropTypes.arrayOf(React.PropTypes.object).isRequired
-  }
-
-  constructor(props: any) {
+export class App extends React.Component<IAppProps, IAppState> {
+  
+  constructor(props: IAppProps) {
     super(props);
   }
 

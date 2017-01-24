@@ -1,4 +1,5 @@
 import reducers from '../reducers';
-import {createStore} from 'redux'
+import {createStore, Store} from 'redux'
+import {IState} from "../common/models/state/state";
 
-export const store = createStore(reducers);
+export const store: Store<IState> = createStore(reducers);

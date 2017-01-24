@@ -1,10 +1,14 @@
-const initialTodos = [
-  {"id": 1, "name": "apple", "checked": false},
-  {"id": 2, "name": "orange", "checked": true},
-  {"id": 3, "name": "banana", "checked": false}
-];
+import {Action} from "redux/index";
+import * as _ from "lodash";
 
-let maxId = initialTodos.length;
+import {ITodoState, initialTodoState} from "../common/models/state/todo-state";
+import {ITodo} from "../common/models/todo";
+import {IAddTodoAction, addTodo} from "./actions/add-todo-action";
+import {IDeleteTodoAction, deleteTodo} from "./actions/delete-todo-action";
+import {IToggleTodoAction, toggleTodo} from "./actions/toggle-todo-action";
+import {IUpdateTodoAction, updateTodo} from "./actions/update-todo-action";
+
+let maxId = initialTodoState.data.length;
 
 /*
  * state:
@@ -16,43 +20,21 @@ let maxId = initialTodos.length;
  *    }
  * ]
  */
-export default (state = initialTodos, action) => {
+export default (state: ITodoState = initialTodoState, action: Action) => {
   switch(action.type) {
     case 'TOGGLE_TODO':
-      return state.map((t) => {
-        if (t.id === action.id) {
-          return Object.assign({}, t, {
-            checked: !t.checked
-          });
-        }
-
-        return t;
-      });
+      return toggleTodo(state, <IToggleTodoAction>action);
     case 'ADD_TODO':
-      let newTodo = {
-        id: maxId + 1,
-        name: action.name,
-        checked: false
-      };
-
-      maxId++;
-
-      return [
-        ...state, newTodo
-      ];
+      let newState = addTodo(maxId, state, <IAddTodoAction>action);
+      maxId = _.max(newState.data.map((todo: ITodo) => todo.id));
+      return newState;
     case 'UPDATE_TODO':
-      return state.map((t) => {
-        if (t.id === action.id) {
-          return Object.assign({}, t, {
-            name: action.name
-          });
-        }
-
-        return t;
-      });
+      return updateTodo(state, <IUpdateTodoAction>action);
     case 'DELETE_TODO':
-      return state.filter((item) => item.id !== action.id);
+      return deleteTodo(state, <IDeleteTodoAction>action);
     default:
       return state;
   }
 };
+
+

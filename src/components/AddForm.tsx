@@ -2,9 +2,16 @@ import * as React from 'react';
 import {event} from '../lib/event-emitter';
 import {actionName} from '../common/constants';
 
-export default class AddForm extends React.Component<any, any> {
+interface IAddFormProps {
+}
 
-  constructor(props?) {
+interface IAddFormState {
+  inputValue: string
+}
+
+export class AddForm extends React.Component<IAddFormProps, IAddFormState> {
+
+  constructor(props: IAddFormProps) {
     super(props);
 
     this.state = {

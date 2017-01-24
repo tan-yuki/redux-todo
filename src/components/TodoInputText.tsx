@@ -2,17 +2,22 @@ import * as React from 'react';
 import {event} from '../lib/event-emitter';
 import {actionName} from '../common/constants';
 
-export default class TodoInputText extends React.Component<any, any> {
-  static propTypes = {
-    id:               React.PropTypes.number.isRequired,
-    editing:          React.PropTypes.bool,
-    text:             React.PropTypes.string.isRequired,
-    onUpdateFinished: React.PropTypes.func.isRequired,
-  }
+interface ITodoInputTextProps {
+  id:               number,
+  text:             string,
+  onUpdateFinished: () => void
+}
+
+interface ITodoInputTextState {
+  text: string
+}
+
+export class TodoInputText
+  extends React.Component<ITodoInputTextProps, ITodoInputTextState> {
 
   state = {
     text: this.props.text || ``
-  }
+  };
 
   onChange(e) {
     this.setState({
@@ -30,7 +35,7 @@ export default class TodoInputText extends React.Component<any, any> {
   }
 
   render() {
-    const {text} = this.state
+    const {text} = this.state;
 
     return <input type="text" autoFocus={true}
       value={text}
