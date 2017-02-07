@@ -1,8 +1,8 @@
 import * as React from 'react';
-import {event} from '../lib/event-emitter';
-import {actionName} from '../common/constants';
+import {Actions} from "../actions/index";
 
 interface IAddFormProps {
+  actions: Actions 
 }
 
 interface IAddFormState {
@@ -26,8 +26,9 @@ export class AddForm extends React.Component<IAddFormProps, IAddFormState> {
   }
 
   onClickAddButton(e) {
-   e.preventDefault();
-   event.emit(actionName.ADD_TODO, this.state.inputValue);
+    e.preventDefault();
+    
+    this.props.actions.addTodo(this.state.inputValue);
   }
 
   render() {

@@ -1,15 +1,12 @@
-import {Action} from "redux/index";
 import {ITodoState} from "../../common/models/state/todo-state";
-
-export interface IToggleTodoAction extends Action {
-    id: number
-}
+import {IToggleTodoPayload} from "../../actions/toggle-todo-action";
+import {Action} from "../../actions/action";
 
 export function toggleTodo(state: ITodoState,
-                           action: IToggleTodoAction): ITodoState {
+                           action: Action): ITodoState {
   return {
     data: state.data.map((t) => {
-      if (t.id === action.id) {
+      if (t.id === action.payload.id) {
         return Object.assign({}, t, {
           checked: !t.checked
         });

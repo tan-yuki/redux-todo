@@ -1,16 +1,17 @@
 import * as React from 'react';
+import {createStore, Store} from 'redux'
 import * as ReactDOM from 'react-dom';
-import {App} from './components/App';
-import {store} from './lib/store';
+import {Provider} from 'react-redux';
 
-console.log(store.getState());
+import reducers from './reducers';
+import App from './container/App';
+import {IState} from "./common/models/state/state";
 
-const render = () => ReactDOM.render(
-  <App
-    todos={store.getState().todos.data}
-  />,
+const store: Store<IState> = createStore(reducers);
+
+ReactDOM.render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
   document.getElementById('root')
 );
-
-render();
-store.subscribe(render);

@@ -1,10 +1,10 @@
 import * as React from 'react';
-import {event} from '../lib/event-emitter';
-import {actionName} from '../common/constants';
+import {Actions} from "../actions/index";
 
 interface ITodoInputTextProps {
   id:               number,
   text:             string,
+  actions:          Actions,
   onUpdateFinished: () => void
 }
 
@@ -26,10 +26,10 @@ export class TodoInputText
   }
 
   onKeyDown(e) {
-    const {id, onUpdateFinished} = this.props;
+    const {id, actions, onUpdateFinished} = this.props;
 
     if (e.keyCode === 13) {
-      event.emit(actionName.UPDATE_TODO, id, this.state.text);
+      actions.updateTodo(id, this.state.text);
       onUpdateFinished();
     }
   }

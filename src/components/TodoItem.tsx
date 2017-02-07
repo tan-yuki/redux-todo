@@ -1,13 +1,13 @@
 import * as React from 'react';
 import * as cn from 'classnames';
 import {TodoInputText} from './TodoInputText';
-import {event} from '../lib/event-emitter';
-import {actionName} from '../common/constants';
+import {Actions} from "../actions/index";
 
 interface ITodoItemProps {
-  id:      number,
-  name:    string,
-  checked: boolean
+  id:           number,
+  name:         string,
+  checked:      boolean,
+  actions:      Actions
 }
 interface ITodoItemState {
   editing: boolean
@@ -40,15 +40,15 @@ export class TodoItem extends React.Component<ITodoItemProps, ITodoItemState> {
   }
   
   onChangeCheckbox(id: number): void {
-    event.emit(actionName.TOGGLE_TODO, id);
+    this.props.actions.toggleTodo(id);
   }
 
   onClickDeleteLink(id: number): void {
-    event.emit(actionName.DELETE_TODO, id);
+    this.props.actions.deleteTodo(id);
   }
 
   render() {
-    const {id, name, checked} = this.props;
+    const {id, name, checked, actions} = this.props;
 
     let className = cn({
       checked: checked
@@ -59,6 +59,7 @@ export class TodoItem extends React.Component<ITodoItemProps, ITodoItemState> {
       elem = <TodoInputText
         id={id}
         text={name}
+        actions={actions}
         onUpdateFinished={() => this.finishToEditing()}
       />
     } else {
