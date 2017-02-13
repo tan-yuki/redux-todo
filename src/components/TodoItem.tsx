@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as cn from 'classnames';
 import {TodoInputText} from './TodoInputText';
-import {Actions} from "../actions/index";
+import {Actions, IToggleTodoPayload, IDeleteTodoPayload} from "../actions/index";
 
 interface ITodoItemProps {
   id:           number,
@@ -40,11 +40,11 @@ export class TodoItem extends React.Component<ITodoItemProps, ITodoItemState> {
   }
   
   onChangeCheckbox(id: number): void {
-    this.props.actions.toggleTodo(id);
+    this.props.actions.toggleTodo({id} as IToggleTodoPayload);
   }
 
   onClickDeleteLink(id: number): void {
-    this.props.actions.deleteTodo(id);
+    this.props.actions.deleteTodo({id} as IDeleteTodoPayload);
   }
 
   render() {

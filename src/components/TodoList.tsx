@@ -11,22 +11,19 @@ interface ITodoListState {}
 
 export class TodoList
   extends React.Component<ITodoListProps, ITodoListState> {
-  
-  constructor(props: ITodoListProps) {
-    super(props);
-  }
 
   render() {
-    const {todos, actions} = this.props;
+    let props = this.props as ITodoListProps;
+    
 
     return (<ul id="todo-list">
-     {todos.map((t) => {
+     {props.todos.map((t) => {
        return <TodoItem
          key={t.id}
          id={t.id}
          name={t.name}
          checked={t.checked}
-         actions={actions}
+         actions={props.actions}
        />
      })}
     </ul>);

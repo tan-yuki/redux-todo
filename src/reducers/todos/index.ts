@@ -8,11 +8,11 @@ import {deleteTodo} from "./delete-todo";
 import {toggleTodo} from "./toggle-todo";
 import {updateTodo} from "./update-todo";
 import {ActionTypes} from "../../actions/action-types";
-import {Action} from "../../actions/action";
 
 let maxId = initialTodoState.data.length;
 
-let reducer: Reducer<ITodoState> = (state: ITodoState = initialTodoState, action: Action): ITodoState => {
+
+let reducer: Reducer<ITodoState> = (state: ITodoState = initialTodoState, action: any): ITodoState => {
   switch(action.type) {
     case ActionTypes.TOGGLE_TODO:
       return toggleTodo(state, action);

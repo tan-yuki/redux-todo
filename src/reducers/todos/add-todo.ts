@@ -1,12 +1,12 @@
 import {ITodoState} from "../../common/models/state/todo-state";
-import {Action} from "../../actions/action";
+import {Action, IAddTodoPayload} from "../../actions/index";
 
 export function addTodo(maxId: number,
                         state: ITodoState,
-                        action: Action): ITodoState {
+                        action: Action<IAddTodoPayload>): ITodoState {
   let newTodo = {
     id: maxId + 1,
-    name: action.payload.name,
+    name: action.payload.text,
     checked: false
   };
   

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Actions} from "../actions/index";
+import {Actions, IUpdateTodoPayload} from "../actions/index";
 
 interface ITodoInputTextProps {
   id:               number,
@@ -29,7 +29,7 @@ export class TodoInputText
     const {id, actions, onUpdateFinished} = this.props;
 
     if (e.keyCode === 13) {
-      actions.updateTodo(id, this.state.text);
+      actions.updateTodo({id, text: this.state.text} as IUpdateTodoPayload);
       onUpdateFinished();
     }
   }

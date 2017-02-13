@@ -1,8 +1,8 @@
 import * as React from 'react';
-import {Actions} from "../actions/index";
+import {Actions, IAddTodoPayload} from "../actions/index";
 
 interface IAddFormProps {
-  actions: Actions 
+  actions: Actions
 }
 
 interface IAddFormState {
@@ -10,31 +10,29 @@ interface IAddFormState {
 }
 
 export class AddForm extends React.Component<IAddFormProps, IAddFormState> {
-
-  constructor(props: IAddFormProps) {
-   super(props);
-
-   this.state = {
+  
+  state = {
     inputValue: ''
-   };
-  }
+  };
 
   onChangeInputText(e) {
-   this.setState({
-    inputValue: e.target.value
-   });
+    this.setState({
+      inputValue: e.target.value
+    });
   }
 
   onClickAddButton(e) {
     e.preventDefault();
-    
-    this.props.actions.addTodo(this.state.inputValue);
+
+    this.props.actions.addTodo({text: this.state.inputValue} as IAddTodoPayload);
   }
 
   render() {
-   return (<form id="add-form" onSubmit={(e) => e.preventDefault()}>
-      <input type="text" value={this.state.inputValue} onChange={(e) => this.onChangeInputText(e)}/>
+    let state = this.state as IAddFormState;
+
+    return (<form id="add-form" onSubmit={(e) => e.preventDefault()}>
+      <input type="text" value={state.inputValue} onChange={(e) => this.onChangeInputText(e)}/>
       <button id="add-todo" onClick={(e) =>this.onClickAddButton(e)}>Add</button>
-    </form>);
+     </form>);
   }
 }

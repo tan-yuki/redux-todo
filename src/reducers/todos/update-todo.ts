@@ -1,14 +1,13 @@
 import {ITodoState} from "../../common/models/state/todo-state";
-import {IUpdateTodoPayload} from "../../actions/update-todo-action";
-import {Action} from "../../actions/action";
+import {Action, IUpdateTodoPayload} from "../../actions/index";
 
 export function updateTodo(state: ITodoState,
-                           action: Action): ITodoState {
+                           action: Action<IUpdateTodoPayload>): ITodoState {
   return {
     data: state.data.map((t) => {
       if (t.id === action.payload.id) {
         return Object.assign({}, t, {
-          name: action.payload.name
+          name: action.payload.text
         });
       }
 
