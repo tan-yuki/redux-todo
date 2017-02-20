@@ -1,4 +1,4 @@
-import * as React from 'react';
+import {Component} from 'react';
 import {Actions, IAddTodoPayload} from "../actions/index";
 
 interface IAddFormProps {
@@ -9,8 +9,8 @@ interface IAddFormState {
   inputValue: string
 }
 
-export class AddForm extends React.Component<IAddFormProps, IAddFormState> {
-  
+export class AddForm extends Component<IAddFormProps, IAddFormState> {
+
   state = {
     inputValue: ''
   };
@@ -18,12 +18,11 @@ export class AddForm extends React.Component<IAddFormProps, IAddFormState> {
   onChangeInputText(e) {
     this.setState({
       inputValue: e.target.value
-    });
+    } as IAddFormState);
   }
 
   onClickAddButton(e) {
     e.preventDefault();
-
     this.props.actions.addTodo({text: this.state.inputValue} as IAddTodoPayload);
   }
 

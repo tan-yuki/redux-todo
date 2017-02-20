@@ -1,7 +1,7 @@
 import * as ReduxAction from "redux-actions";
 import {createAction, ActionFunctionAny} from "redux-actions";
 import {ActionTypes} from "./action-types";
-import {ActionCreatorsMapObject} from "redux/index";
+import {ActionCreatorsMapObject} from "redux";
 
 export interface Action<Payload> extends ReduxAction.Action<Payload> {
   

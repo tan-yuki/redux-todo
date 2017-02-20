@@ -40,11 +40,15 @@ export class TodoItem extends React.Component<ITodoItemProps, ITodoItemState> {
   }
   
   onChangeCheckbox(id: number): void {
-    this.props.actions.toggleTodo({id} as IToggleTodoPayload);
+    const {actions} = this.props;
+    
+    actions.toggleTodo({id} as IToggleTodoPayload);
   }
 
   onClickDeleteLink(id: number): void {
-    this.props.actions.deleteTodo({id} as IDeleteTodoPayload);
+    const {actions} = this.props;
+
+    actions.deleteTodo({id} as IDeleteTodoPayload);
   }
 
   render() {
