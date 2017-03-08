@@ -1,44 +1,83 @@
-import * as ReduxAction from "redux-actions";
-import {createAction, ActionFunctionAny} from "redux-actions";
-import {ActionTypes} from "./action-types";
-import {ActionCreatorsMapObject} from "redux";
+import {ActionTypes, ADD_TODO, UPDATE_TODO, DELETE_TODO, TOGGLE_TODO} from "./action-types";
+import {Action, ActionCreatorsMapObject, ActionCreator} from "redux";
+import {Dispatch} from "redux";
+import {IState} from "../common/models/state/state";
 
-export interface Action<Payload> extends ReduxAction.Action<Payload> {
-  
+interface IPayload {
 }
 
-export interface Payload {
-
+interface IAction<T extends IPayload> extends Action {
+  payload: T
+  type: ActionTypes
 }
 
-export interface IAddTodoPayload extends Payload {
+export interface IAddTodoPayload extends IPayload {
   text: string
 }
 
-export interface IDeleteTodoPayload extends Payload {
+export interface IDeleteTodoPayload extends IPayload {
   id: number
 }
 
-export interface IToggleTodoPayload extends Payload {
+export interface IToggleTodoPayload extends IPayload {
   id: number
 }
 
-export interface IUpdateTodoPayload extends Payload {
+export interface IUpdateTodoPayload extends IPayload {
   id: number
   text: string
 }
 
-export interface Actions extends ActionCreatorsMapObject {
-  addTodo: ActionFunctionAny<Action<IAddTodoPayload>>
-  updateTodo: ActionFunctionAny<Action<IUpdateTodoPayload>>
-  deleteTodo: ActionFunctionAny<Action<IDeleteTodoPayload>>
-  toggleTodo: ActionFunctionAny<Action<IToggleTodoPayload>>
+export interface IFetchTodoRequestPayload extends IPayload {
+  dispatch: Dispatch<IState>
 }
 
-export const actionCreators: Actions = {
-  addTodo: createAction<IAddTodoPayload>(ActionTypes.ADD_TODO),
-  updateTodo: createAction<IUpdateTodoPayload>(ActionTypes.UPDATE_TODO),
-  deleteTodo: createAction<IDeleteTodoPayload>(ActionTypes.DELETE_TODO),
-  toggleTodo: createAction<IToggleTodoPayload>(ActionTypes.TOGGLE_TODO)
+export interface IFetchTodoRequestStartPayload extends IPayload {
+}
+
+export type IAddTodoAction    = IAction<IAddTodoPayload>
+export type IUpdateTodoAction = IAction<IUpdateTodoPayload>
+export type IDeleteTodoAction = IAction<IDeleteTodoPayload>
+export type IToggleTodoAction = IAction<IToggleTodoPayload>
+
+function addTodo(text: string): IAddTodoAction {
+  return {
+    type: `ADD_TODO` as ADD_TODO,
+    payload: { text }
+  };
+}
+
+function updateTodo(id: number, text: string): IUpdateTodoAction {
+  return {
+    type: `UPDATE_TODO` as UPDATE_TODO,
+    payload: { id, text }
+  };
+}
+
+function deleteTodo(id: number): IDeleteTodoAction {
+  return {
+    type: `DELETE_TODO` as DELETE_TODO,
+    payload: { id }
+  };
+}
+
+function toggleTodo(id: number): IToggleTodoAction {
+  return {
+    type: `TOGGLE_TODO` as TOGGLE_TODO,
+    payload: { id }
+  };
+}
+
+export interface IActionCreators extends ActionCreatorsMapObject {
+  addTodo: ActionCreator<IAddTodoAction>
+  updateTodo: ActionCreator<IUpdateTodoAction>
+  deleteTodo: ActionCreator<IDeleteTodoAction>
+  toggleTodo: ActionCreator<IToggleTodoAction>
+}
+
+export const actionCreators: IActionCreators = {
+  addTodo,
+  updateTodo,
+  deleteTodo,
+  toggleTodo,
 };
-

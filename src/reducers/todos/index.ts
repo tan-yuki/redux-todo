@@ -1,4 +1,4 @@
-import {Reducer} from "redux/index";
+import {Reducer} from "redux";
 import * as _ from "lodash";
 
 import {ITodoState, initialTodoState} from "../../common/models/state/todo-state";
@@ -7,22 +7,21 @@ import {addTodo} from "./add-todo";
 import {deleteTodo} from "./delete-todo";
 import {toggleTodo} from "./toggle-todo";
 import {updateTodo} from "./update-todo";
-import {ActionTypes} from "../../actions/action-types";
 
 let maxId = initialTodoState.data.length;
 
 
 let reducer: Reducer<ITodoState> = (state: ITodoState = initialTodoState, action: any): ITodoState => {
   switch(action.type) {
-    case ActionTypes.TOGGLE_TODO:
+    case `TOGGLE_TODO`:
       return toggleTodo(state, action);
-    case ActionTypes.ADD_TODO:
+    case `ADD_TODO`:
       let newState = addTodo(maxId, state, action);
       maxId = _.max(newState.data.map((todo: ITodo) => todo.id));
       return newState;
-    case ActionTypes.UPDATE_TODO:
+    case `UPDATE_TODO`:
       return updateTodo(state, action);
-    case ActionTypes.DELETE_TODO:
+    case `DELETE_TODO`:
       return deleteTodo(state, action);
     default:
       return state;

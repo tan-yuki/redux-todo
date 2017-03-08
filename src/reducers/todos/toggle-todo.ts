@@ -1,8 +1,8 @@
 import {ITodoState} from "../../common/models/state/todo-state";
-import {Action, IToggleTodoPayload} from "../../actions/index";
+import {IToggleTodoAction} from "../../actions/index";
 
 export function toggleTodo(state: ITodoState,
-                           action: Action<IToggleTodoPayload>): ITodoState {
+                           action: IToggleTodoAction): ITodoState {
   return {
     data: state.data.map((t) => {
       if (t.id === action.payload.id) {

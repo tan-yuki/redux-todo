@@ -1,11 +1,10 @@
 import * as React from 'react';
 import {TodoItem} from './TodoItem';
 import {ITodos} from "../common/models/todos";
-import {Actions} from "../actions/index";
 
 interface ITodoListProps {
   todos: ITodos,
-  actions: Actions
+  actions: any
 }
 interface ITodoListState {}
 

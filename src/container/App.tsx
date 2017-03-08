@@ -5,16 +5,16 @@ import {IState} from "../common/models/state/state";
 import {AddForm} from "../components/AddForm";
 import {TodoList} from "../components/TodoList";
 
-import {actionCreators, Actions} from "../actions/index";
 import {bindActionCreators} from "redux";
 import {ITodos} from "../common/models/todos";
+import {actionCreators, IActionCreators} from "../actions/index";
 
 export interface IAppState {
   todos: ITodos
 }
 
 export interface IDispatchProps {
-  actions: Actions
+  actions: IActionCreators
 }
 
 
@@ -26,11 +26,11 @@ let mapStateToProps = (state: IState): IAppState => {
 
 let mapDispatchToProps = (dispatch): IDispatchProps => {
   return {
-    actions: bindActionCreators(actionCreators, dispatch)
+    actions: bindActionCreators<any>(actionCreators, dispatch)
   };
 };
 
-class App extends React.Component<IAppState & IDispatchProps> {
+class App extends React.Component<IAppState & IDispatchProps, undefined> {
   render() {
     const {todos, actions} = this.props;
 
