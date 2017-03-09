@@ -14,4 +14,3 @@ export function updateTodo(id: number, text: string): IUpdateTodoAction {
     payload: { id, text }
   };
 }
-

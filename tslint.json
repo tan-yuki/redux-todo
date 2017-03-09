@@ -1,0 +1,33 @@
+{
+  "rulesDirectory": ["./src"],
+  "rules": {
+    "no-reference": true,
+    "no-internal-module": true,
+    "no-import-side-effect": true,
+    "no-var-requires": true,
+    "ban": [
+      true
+    ],
+    "no-arg": true,
+    "no-eval": true,
+    "no-null-keyword": true,
+    "no-unused-new": true,
+    "triple-equals": true,
+    "cyclomatic-complexity": [true, 20],
+    "eofline": true,
+    "indent": [true, "spaces"],
+    "linebreak-style": [true, "LF"],
+    "max-classes-per-file": [true, 1],
+    "max-file-line-count": [true, 300],
+    "max-line-length": [true, 120],
+    "no-default-export": true,
+    "no-require-imports": true,
+    "class-name": true,
+    "import-spacing": true,
+    "interface-name": [true, "always-prefix"],
+    "no-consecutive-blank-lines": true,
+    "no-trailing-whitespace": [true, "ignore-comments"],
+    "variable-name": [true, "ban-keywords", "check-format", "allow-pascal-case"],
+    "whitespace": [true, "check-branch", "check-decl", "check-operator", "check-module", "check-separator", "check-type"]
+  }
+}

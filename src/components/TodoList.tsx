@@ -13,7 +13,6 @@ export class TodoList
 
   render() {
     let props = this.props as ITodoListProps;
-    
 
     return (<ul id="todo-list">
      {props.todos.map((t) => {
@@ -28,4 +27,3 @@ export class TodoList
     </ul>);
   }
 }
-

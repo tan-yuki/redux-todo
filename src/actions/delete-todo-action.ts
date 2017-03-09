@@ -13,6 +13,3 @@ export function deleteTodo(id: number): IDeleteTodoAction {
     payload: { id }
   };
 }
-
-
-

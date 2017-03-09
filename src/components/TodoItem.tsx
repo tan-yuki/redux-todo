@@ -37,10 +37,10 @@ export class TodoItem extends React.Component<ITodoItemProps, ITodoItemState> {
       editing: false
     });
   }
-  
+
   onChangeCheckbox(id: number): void {
     const {actions} = this.props;
-    
+
     actions.toggleTodo(id);
   }
 
@@ -76,4 +76,3 @@ export class TodoItem extends React.Component<ITodoItemProps, ITodoItemState> {
     </li>);
   }
 }
-

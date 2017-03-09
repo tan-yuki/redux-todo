@@ -62,9 +62,9 @@
 	const App_1 = __webpack_require__(232);
 	const fetch_todo_action_1 = __webpack_require__(243);
 	const logger = createLogger();
-	const store = redux_1.createStore(reducers_1.default, redux_1.applyMiddleware(redux_thunk_1.default, logger));
+	const store = redux_1.createStore(reducers_1.reducers, redux_1.applyMiddleware(redux_thunk_1.default, logger));
 	ReactDOM.render(React.createElement(react_redux_1.Provider, { store: store },
-	    React.createElement(App_1.default, null)), document.getElementById('root'));
+	    React.createElement(App_1.AppContainer, null)), document.getElementById('root'));
 	store.dispatch(fetch_todo_action_1.fetchTodoRequest());
 
 
@@ -24628,9 +24628,8 @@
 	"use strict";
 	const index_1 = __webpack_require__(225);
 	const redux_1 = __webpack_require__(33);
-	Object.defineProperty(exports, "__esModule", { value: true });
-	exports.default = redux_1.combineReducers({
-	    todos: index_1.default
+	exports.reducers = redux_1.combineReducers({
+	    todoReducers: index_1.todoReducers
 	});
 
 
@@ -24667,8 +24666,7 @@
 	            return state;
 	    }
 	};
-	Object.defineProperty(exports, "__esModule", { value: true });
-	exports.default = reducer;
+	exports.todoReducers = reducer;
 
 
 /***/ },
@@ -41875,8 +41873,7 @@
 	            React.createElement(TodoList_1.TodoList, { todos: todos, actions: actions })));
 	    }
 	}
-	Object.defineProperty(exports, "__esModule", { value: true });
-	exports.default = react_redux_1.connect(mapStateToProps, mapDispatchToProps)(App);
+	exports.AppContainer = react_redux_1.connect(mapStateToProps, mapDispatchToProps)(App);
 
 
 /***/ },

@@ -15,7 +15,7 @@ let initialTodoState = {
 let maxId = initialTodoState.data.length;
 
 let reducer: Reducer<ITodoState> = (state: ITodoState = initialTodoState, action: any): ITodoState => {
-  switch(action.type) {
+  switch (action.type) {
     case `TOGGLE_TODO`:
       return toggleTodo(state, action);
     case `ADD_TODO`:
@@ -33,6 +33,4 @@ let reducer: Reducer<ITodoState> = (state: ITodoState = initialTodoState, action
   }
 };
 
-export default reducer;
-
-
+export const todoReducers = reducer;

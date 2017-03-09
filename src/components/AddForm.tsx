@@ -30,7 +30,7 @@ export class AddForm extends React.Component<IAddFormProps, IAddFormState> {
 
     return (<form id="add-form" onSubmit={(e) => e.preventDefault()}>
       <input type="text" value={state.inputValue} onChange={(e) => this.onChangeInputText(e)}/>
-      <button id="add-todo" onClick={(e) =>this.onClickAddButton(e)}>Add</button>
+      <button id="add-todo" onClick={(e) => this.onClickAddButton(e)}>Add</button>
      </form>);
   }
 }

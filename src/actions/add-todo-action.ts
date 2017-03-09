@@ -13,4 +13,3 @@ export function addTodo(text: string): IAddTodoAction {
     payload: { text }
   };
 }
-

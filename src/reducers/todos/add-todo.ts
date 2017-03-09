@@ -9,7 +9,7 @@ export function addTodo(maxId: number,
     name: action.payload.text,
     checked: false
   };
-  
+
   return {
   data: [...state.data, newTodo]
   };

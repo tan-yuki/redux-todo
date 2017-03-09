@@ -17,7 +17,6 @@ export interface IDispatchProps {
   actions: IActionCreators
 }
 
-
 let mapStateToProps = (state: IState): IAppState => {
   return {
     todos: state.todos.data
@@ -42,4 +41,4 @@ class App extends React.Component<IAppState & IDispatchProps, undefined> {
   }
 }
 
-export default connect<IAppState, IDispatchProps, any>(mapStateToProps, mapDispatchToProps)(App);
+export const AppContainer = connect<IAppState, IDispatchProps, any>(mapStateToProps, mapDispatchToProps)(App);

@@ -13,4 +13,3 @@ export function toggleTodo(id: number): IToggleTodoAction {
     payload: { id }
   };
 }
-

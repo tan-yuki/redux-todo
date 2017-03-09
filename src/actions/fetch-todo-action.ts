@@ -29,4 +29,3 @@ export function fetchTodoRequest() {
     }, 500));
   };
 }
-
