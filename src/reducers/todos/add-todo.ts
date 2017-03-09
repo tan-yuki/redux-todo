@@ -1,5 +1,5 @@
 import {ITodoState} from "../../common/models/state/todo-state";
-import {IAddTodoAction} from "../../actions/index";
+import {IAddTodoAction} from "../../actions/add-todo-action";
 
 export function addTodo(maxId: number,
                         state: ITodoState,

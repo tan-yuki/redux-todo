@@ -58,12 +58,14 @@
 	const react_redux_1 = __webpack_require__(200);
 	const redux_thunk_1 = __webpack_require__(217);
 	const createLogger = __webpack_require__(218);
-	const logger = createLogger();
 	const reducers_1 = __webpack_require__(224);
 	const App_1 = __webpack_require__(232);
+	const fetch_todo_action_1 = __webpack_require__(243);
+	const logger = createLogger();
 	const store = redux_1.createStore(reducers_1.default, redux_1.applyMiddleware(redux_thunk_1.default, logger));
 	ReactDOM.render(React.createElement(react_redux_1.Provider, { store: store },
 	    React.createElement(App_1.default, null)), document.getElementById('root'));
+	store.dispatch(fetch_todo_action_1.fetchTodoRequest());
 
 
 /***/ },
@@ -24638,13 +24640,16 @@
 
 	"use strict";
 	const _ = __webpack_require__(226);
-	const todo_state_1 = __webpack_require__(227);
-	const add_todo_1 = __webpack_require__(228);
-	const delete_todo_1 = __webpack_require__(229);
-	const toggle_todo_1 = __webpack_require__(230);
-	const update_todo_1 = __webpack_require__(231);
-	let maxId = todo_state_1.initialTodoState.data.length;
-	let reducer = (state = todo_state_1.initialTodoState, action) => {
+	const add_todo_1 = __webpack_require__(227);
+	const delete_todo_1 = __webpack_require__(228);
+	const toggle_todo_1 = __webpack_require__(229);
+	const update_todo_1 = __webpack_require__(230);
+	const fetch_todos_1 = __webpack_require__(231);
+	let initialTodoState = {
+	    data: []
+	};
+	let maxId = initialTodoState.data.length;
+	let reducer = (state = initialTodoState, action) => {
 	    switch (action.type) {
 	        case `TOGGLE_TODO`:
 	            return toggle_todo_1.toggleTodo(state, action);
@@ -24656,6 +24661,8 @@
 	            return update_todo_1.updateTodo(state, action);
 	        case `DELETE_TODO`:
 	            return delete_todo_1.deleteTodo(state, action);
+	        case `FETCH_TODO_REQUEST_SUCCESS`:
+	            return fetch_todos_1.fetchTodos(state, action);
 	        default:
 	            return state;
 	    }
@@ -41760,20 +41767,6 @@
 /***/ function(module, exports) {
 
 	"use strict";
-	exports.initialTodoState = {
-	    data: [
-	        { "id": 1, "name": "apple", "checked": false },
-	        { "id": 2, "name": "orange", "checked": true },
-	        { "id": 3, "name": "banana", "checked": false }
-	    ]
-	};
-
-
-/***/ },
-/* 228 */
-/***/ function(module, exports) {
-
-	"use strict";
 	function addTodo(maxId, state, action) {
 	    let newTodo = {
 	        id: maxId + 1,
@@ -41788,7 +41781,7 @@
 
 
 /***/ },
-/* 229 */
+/* 228 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -41801,7 +41794,7 @@
 
 
 /***/ },
-/* 230 */
+/* 229 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -41821,7 +41814,7 @@
 
 
 /***/ },
-/* 231 */
+/* 230 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -41838,6 +41831,19 @@
 	    };
 	}
 	exports.updateTodo = updateTodo;
+
+
+/***/ },
+/* 231 */
+/***/ function(module, exports) {
+
+	"use strict";
+	function fetchTodos(_, action) {
+	    return {
+	        data: action.payload.response
+	    };
+	}
+	exports.fetchTodos = fetchTodos;
 
 
 /***/ },
@@ -42069,6 +42075,23 @@
 
 /***/ },
 /* 238 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	const add_todo_action_1 = __webpack_require__(239);
+	const update_todo_action_1 = __webpack_require__(240);
+	const delete_todo_action_1 = __webpack_require__(241);
+	const toggle_todo_action_1 = __webpack_require__(242);
+	exports.actionCreators = {
+	    addTodo: add_todo_action_1.addTodo,
+	    updateTodo: update_todo_action_1.updateTodo,
+	    deleteTodo: delete_todo_action_1.deleteTodo,
+	    toggleTodo: toggle_todo_action_1.toggleTodo,
+	};
+
+
+/***/ },
+/* 239 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -42078,30 +42101,77 @@
 	        payload: { text }
 	    };
 	}
+	exports.addTodo = addTodo;
+
+
+/***/ },
+/* 240 */
+/***/ function(module, exports) {
+
+	"use strict";
 	function updateTodo(id, text) {
 	    return {
 	        type: `UPDATE_TODO`,
 	        payload: { id, text }
 	    };
 	}
+	exports.updateTodo = updateTodo;
+
+
+/***/ },
+/* 241 */
+/***/ function(module, exports) {
+
+	"use strict";
 	function deleteTodo(id) {
 	    return {
 	        type: `DELETE_TODO`,
 	        payload: { id }
 	    };
 	}
+	exports.deleteTodo = deleteTodo;
+
+
+/***/ },
+/* 242 */
+/***/ function(module, exports) {
+
+	"use strict";
 	function toggleTodo(id) {
 	    return {
 	        type: `TOGGLE_TODO`,
 	        payload: { id }
 	    };
 	}
-	exports.actionCreators = {
-	    addTodo,
-	    updateTodo,
-	    deleteTodo,
-	    toggleTodo,
-	};
+	exports.toggleTodo = toggleTodo;
+
+
+/***/ },
+/* 243 */
+/***/ function(module, exports) {
+
+	"use strict";
+	function fetchTodoRequestSuccess(response) {
+	    return {
+	        type: `FETCH_TODO_REQUEST_SUCCESS`,
+	        payload: {
+	            response
+	        }
+	    };
+	}
+	exports.fetchTodoRequestSuccess = fetchTodoRequestSuccess;
+	function fetchTodoRequest() {
+	    return function (dispatch) {
+	        return new Promise(() => setTimeout(() => {
+	            dispatch(fetchTodoRequestSuccess([
+	                { "id": 1, "name": "apple", "checked": false },
+	                { "id": 2, "name": "orange", "checked": true },
+	                { "id": 3, "name": "banana", "checked": false }
+	            ]));
+	        }, 500));
+	    };
+	}
+	exports.fetchTodoRequest = fetchTodoRequest;
 
 
 /***/ }

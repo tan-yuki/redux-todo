@@ -1,71 +1,16 @@
-import {ActionTypes, ADD_TODO, UPDATE_TODO, DELETE_TODO, TOGGLE_TODO} from "./action-types";
+import {ActionTypes} from "./action-types";
 import {Action, ActionCreatorsMapObject, ActionCreator} from "redux";
-import {Dispatch} from "redux";
-import {IState} from "../common/models/state/state";
+import {IAddTodoAction, addTodo} from "./add-todo-action";
+import {IUpdateTodoAction, updateTodo} from "./update-todo-action";
+import {IDeleteTodoAction, deleteTodo} from "./delete-todo-action";
+import {IToggleTodoAction, toggleTodo} from "./toggle-todo-action";
 
-interface IPayload {
+export interface IPayload {
 }
 
-interface IAction<T extends IPayload> extends Action {
+export interface IAction<A extends ActionTypes, T extends IPayload> extends Action {
   payload: T
-  type: ActionTypes
-}
-
-export interface IAddTodoPayload extends IPayload {
-  text: string
-}
-
-export interface IDeleteTodoPayload extends IPayload {
-  id: number
-}
-
-export interface IToggleTodoPayload extends IPayload {
-  id: number
-}
-
-export interface IUpdateTodoPayload extends IPayload {
-  id: number
-  text: string
-}
-
-export interface IFetchTodoRequestPayload extends IPayload {
-  dispatch: Dispatch<IState>
-}
-
-export interface IFetchTodoRequestStartPayload extends IPayload {
-}
-
-export type IAddTodoAction    = IAction<IAddTodoPayload>
-export type IUpdateTodoAction = IAction<IUpdateTodoPayload>
-export type IDeleteTodoAction = IAction<IDeleteTodoPayload>
-export type IToggleTodoAction = IAction<IToggleTodoPayload>
-
-function addTodo(text: string): IAddTodoAction {
-  return {
-    type: `ADD_TODO` as ADD_TODO,
-    payload: { text }
-  };
-}
-
-function updateTodo(id: number, text: string): IUpdateTodoAction {
-  return {
-    type: `UPDATE_TODO` as UPDATE_TODO,
-    payload: { id, text }
-  };
-}
-
-function deleteTodo(id: number): IDeleteTodoAction {
-  return {
-    type: `DELETE_TODO` as DELETE_TODO,
-    payload: { id }
-  };
-}
-
-function toggleTodo(id: number): IToggleTodoAction {
-  return {
-    type: `TOGGLE_TODO` as TOGGLE_TODO,
-    payload: { id }
-  };
+  type: A
 }
 
 export interface IActionCreators extends ActionCreatorsMapObject {

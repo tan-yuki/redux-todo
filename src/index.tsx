@@ -5,12 +5,12 @@ import {Provider} from 'react-redux';
 import thunk from 'redux-thunk';
 import * as createLogger from 'redux-logger';
 
-const logger = createLogger();
-
 import reducers from './reducers';
 import App from './container/App';
 import {IState} from "./common/models/state/state";
+import {fetchTodoRequest} from "./actions/fetch-todo-action";
 
+const logger = createLogger();
 const store: Store<IState> = createStore(reducers, applyMiddleware(thunk, logger));
 
 ReactDOM.render(
@@ -19,3 +19,6 @@ ReactDOM.render(
   </Provider>,
   document.getElementById('root')
 );
+
+store.dispatch(fetchTodoRequest());
+

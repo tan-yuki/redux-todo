@@ -1,5 +1,5 @@
 import {ITodoState} from "../../common/models/state/todo-state";
-import {IToggleTodoAction} from "../../actions/index";
+import {IToggleTodoAction} from "../../actions/toggle-todo-action";
 
 export function toggleTodo(state: ITodoState,
                            action: IToggleTodoAction): ITodoState {

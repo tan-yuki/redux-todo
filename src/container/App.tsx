@@ -7,14 +7,14 @@ import {TodoList} from "../components/TodoList";
 
 import {bindActionCreators} from "redux";
 import {ITodos} from "../common/models/todos";
-import {actionCreators, IActionCreators} from "../actions/index";
+import {actionCreators} from "../actions/index";
 
 export interface IAppState {
   todos: ITodos
 }
 
 export interface IDispatchProps {
-  actions: IActionCreators
+  actions: any
 }
 
 

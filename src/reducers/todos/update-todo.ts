@@ -1,5 +1,5 @@
 import {ITodoState} from "../../common/models/state/todo-state";
-import {IUpdateTodoAction} from "../../actions/index";
+import {IUpdateTodoAction} from "../../actions/update-todo-action";
 
 export function updateTodo(state: ITodoState,
                            action: IUpdateTodoAction): ITodoState {
